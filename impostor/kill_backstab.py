@@ -1,5 +1,6 @@
 from os import system, name
-from time import sleep 
+from time import sleep
+import curses
 
 amongus = ["""
 
@@ -352,14 +353,18 @@ amongus = ["""
 """]
 
 def clear(): 
-    if name == 'nt': 
-        _ = system('cls')
-    else: 
-        _ = system('clear')
+  if name == 'nt': 
+    _ = system('cls')
+  else: 
+    _ = system('clear')
 
-au_fps = 20
-while(True):
-  for n in amongus:
-    print(n)
-    sleep(1/au_fps)
-    clear()
+au_fps = 15
+clear()
+def runanim(window):
+  while(True):
+    for n in amongus:
+      window.addstr(0, 0, n)
+      window.refresh()
+      sleep(1/au_fps)
+
+curses.wrapper(runanim)
