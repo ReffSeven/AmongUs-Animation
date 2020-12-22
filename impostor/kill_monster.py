@@ -1,6 +1,6 @@
 from os import system, name
 from time import sleep
-import curses
+import sys, curses, os
 
 amongus = ["""
 
@@ -279,8 +279,15 @@ clear()
 def runanim(window):
 	while(True):
 		for n in amongus:
-			window.addstr(0, 0, n)
-			window.refresh()
-			sleep(1/au_fps)
-
+			try:
+				window.addstr(0, 0, n)
+				window.refresh()
+				sleep(1/au_fps)
+			except KeyboardInterrupt:
+				curses.endwin()
+				try: sys.exit(0)
+				except SystemExit: os._exit(0)
+			except:
+				curses.endwin()
+			
 curses.wrapper(runanim)
