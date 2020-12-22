@@ -1,2 +1,2 @@
 # AmongUs-Animation
-Animasi AmongUs menggunakan bahasa Python
+Animasi AmongUs berbasis console menggunakan bahasa Python
